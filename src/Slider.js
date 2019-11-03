@@ -160,11 +160,11 @@ class Slider extends Component {
               </Animated.View>
             </View>
             <View onLayout={this.measureLayout} style={styles.barEmpty}/>
-            {/*<View style={[styles.barFill, {*/}
-              {/*width: `${this.currentValueToPercentage}%`,*/}
-              {/*maxWidth: barWidth,*/}
-            {/*},*/}
-            {/*]}/>*/}
+            <View style={[styles.barFill, {
+              width: `${this.currentValueToPercentage}%`,
+              maxWidth: barWidth,
+            },
+            ]}/>
             <PanGestureHandler
               onGestureEvent={this.swipeHandler}
               onHandlerStateChange={this.handleStateChange}
