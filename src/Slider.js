@@ -56,7 +56,7 @@ class Slider extends Component {
   };
 
   get calculateBalloonWidth() {
-    const newBalloonSize = this.currentValueToPercentage / 200 * balloonWidth;
+    const newBalloonSize = this.currentValueToPercentage / 400 * balloonWidth;
     return newBalloonSize + balloonWidth;
   }
 
@@ -150,25 +150,21 @@ class Slider extends Component {
       <View style={styles.wrapper}>
         <View style={{width: '100%', alignItems: 'center'}}>
           <View style={{width: '70%'}}>
-            <Animated.View style={styles.balloon({
-              'translateX': Animated.subtract(currentValue, this.balloonOffset),
-              'rotate': rotate,
-              'balloonWidth': balloonWidth,
-            })}>
-              <Text style={{
-                alignSelf: 'center',
-                color: 'white',
-                fontSize: 18,
-                transform: [{rotate: '-45deg'}],
-                fontFamily: 'IRANYekanMobileFaNum',
-              }}>{`${this.currentValueToPercentage}`}</Text>
-            </Animated.View>
+            <View style={{width:'100%',height:100,justifyContent:'flex-end'}}>
+              <Animated.View style={styles.balloon({
+                'translateX': Animated.subtract(currentValue, this.balloonOffset),
+                'rotate': rotate,
+                'balloonWidth': balloonWidth,
+              })}>
+                <Text style={styles.textValue}>{`${this.currentValueToPercentage}`}</Text>
+              </Animated.View>
+            </View>
             <View onLayout={this.measureLayout} style={styles.barEmpty}/>
-            <View style={[styles.barFill, {
-              width: `${this.currentValueToPercentage}%`,
-              maxWidth: barWidth,
-            },
-            ]}/>
+            {/*<View style={[styles.barFill, {*/}
+              {/*width: `${this.currentValueToPercentage}%`,*/}
+              {/*maxWidth: barWidth,*/}
+            {/*},*/}
+            {/*]}/>*/}
             <PanGestureHandler
               onGestureEvent={this.swipeHandler}
               onHandlerStateChange={this.handleStateChange}
@@ -193,7 +189,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#4A26EC',
     alignSelf: 'flex-start',
     justifyContent: 'center',
-    marginBottom: 28,
+    marginBottom: 24,
     marginStart: -balloonWidth / 2,
     borderTopStartRadius: balloonWidth / 2,
     borderTopEndRadius: balloonWidth / 2,
@@ -219,5 +215,12 @@ const styles = StyleSheet.create({
     height: barHeight,
     backgroundColor: '#dadada',
   },
+  textValue:{
+    alignSelf: 'center',
+    color: 'white',
+    fontSize: 18,
+    transform: [{rotate: '-45deg'}],
+    fontFamily: 'IRANYekanMobileFaNum',
+  }
 });
 export default Slider;
